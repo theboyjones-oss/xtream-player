@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0e1116">
+<title>PanGaze remote</title>
+<style>
+:root{--bg:#0e1116;--panel:#151a21;--panel2:#1c232c;--line:#28303b;--text:#e6edf3;--muted:#8b96a3;--accent:#3b82f6}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:16px 16px 40px;max-width:520px;margin:0 auto}
+h1{font-size:20px;margin:4px 0 2px}
+.muted{color:var(--muted)}
+.tabs{display:flex;gap:6px;margin:14px 0}
+.tabs button{flex:1}
+button{font:inherit;color:inherit;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px;cursor:pointer;touch-action:manipulation}
+button:active{background:var(--accent);border-color:var(--accent)}
+button.on{background:var(--accent);border-color:var(--accent)}
+.pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px auto;max-width:320px}
+.pad button{height:78px;font-size:26px;border-radius:18px}
+.pad .ok{background:var(--accent);border-color:var(--accent);font-size:18px;font-weight:700;border-radius:50%}
+.row{display:flex;gap:10px}
+.row button{flex:1;height:56px;font-size:18px}
+input,select{font:inherit;color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px;width:100%;margin:4px 0 10px}
+label{font-size:12px;color:var(--muted)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:12px}
+.primary{background:var(--accent);border-color:var(--accent);width:100%;font-weight:700}
+#st{font-size:13px;margin-top:6px;min-height:18px}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<h1>📱 PanGaze remote</h1>
+<div class="muted" id="st">Connecting to your TV…</div>
+<div class="tabs"><button data-t="remote" class="on">Remote</button><button data-t="type">Type</button><button data-t="setup">Set up TV</button></div>
+
+<section id="remote">
+  <div class="pad">
+    <span></span><button data-k="ArrowUp">▲</button><span></span>
+    <button data-k="ArrowLeft">◀</button><button data-k="Enter" class="ok">OK</button><button data-k="ArrowRight">▶</button>
+    <span></span><button data-k="ArrowDown">▼</button><span></span>
+  </div>
+  <div class="row"><button data-k="Back">↩ Back</button><button data-k="Home">⌂ Home</button></div>
+  <div class="row" style="margin-top:10px"><button data-k="Rew">⏪ 10s</button><button data-k="PlayPause">⏯</button><button data-k="Fwd">30s ⏩</button></div>
+</section>
+
+<section id="type" class="hidden">
+  <div class="card">
+    <label>Type here — it goes into the TV's search (or the box that's selected on the TV)</label>
+    <input id="txt" placeholder="e.g. Match of the Day" autocomplete="off" enterkeyhint="send">
+    <button class="primary" id="sendTxt">Send to TV</button>
+  </div>
+</section>
+
+<section id="setup" class="hidden">
+  <div class="card">
+    <b>Your TV provider (Xtream)</b>
+    <label>Server</label><input id="sv" placeholder="http://provider.example:8080" autocapitalize="off" spellcheck="false">
+    <label>Username</label><input id="us" autocapitalize="off" spellcheck="false">
+    <label>Password</label><input id="pw" type="password">
+  </div>
+  <div class="card">
+    <b>Debrid (optional)</b>
+    <label>Service</label><select id="ds"><option value="">None / keep the TV's setting</option><option value="rd">Real-Debrid</option><option value="tb">TorBox</option><option value="pm">Premiumize</option></select>
+    <label>API key</label><input id="dk" autocapitalize="off" spellcheck="false" placeholder="Paste your key">
+    <label>Addon links (one per line, optional)</label><textarea id="da" rows="3" style="width:100%;font:inherit;color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px"></textarea>
+  </div>
+  <div class="card">
+    <b>Your Mac or PC (sync, optional)</b>
+    <label>Address (shown in PanGaze on the Mac/PC, Settings › Phone &amp; TV)</label><input id="ma" placeholder="192.168.1.20:8899" autocapitalize="off" spellcheck="false">
+    <label>PanGaze code</label><input id="mc" placeholder="ABCD-EFGH" autocapitalize="characters" autocomplete="off" spellcheck="false" style="text-transform:uppercase">
+  </div>
+  <button class="primary" id="sendSetup" style="margin-top:14px">Send to TV</button>
+  <div class="muted" style="font-size:12px;margin-top:10px">Sent straight to your TV over your Wi-Fi. Nothing is stored on this phone.</div>
+</section>
+
+<script>
+'use strict';
+const T = new URLSearchParams(location.search).get('t') || '';
+const $ = s => document.querySelector(s);
+const st = (m, bad) => { $('#st').textContent = m; $('#st').style.color = bad ? '#fca5a5' : ''; };
+async function send(cmd) {
+  try {
+    const r = await fetch('/remote/cmd?t=' + encodeURIComponent(T) + '&d=' + encodeURIComponent(JSON.stringify(cmd)), { cache: 'no-store' });
+    if (r.status === 403) { st('This link is out of date — scan the code on the TV again.', true); return false; }
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    st('✅ Connected to your TV'); return true;
+  } catch (e) { st('Can\'t reach the TV. Is the app open, and is this phone on the same Wi-Fi?', true); return false; }
+}
+send({ c: 'ping' });
+document.querySelectorAll('.tabs button').forEach(b => b.onclick = () => {
+  document.querySelectorAll('.tabs button').forEach(x => x.classList.toggle('on', x === b));
+  ['remote', 'type', 'setup'].forEach(id => $('#' + id).classList.toggle('hidden', id !== b.dataset.t));
+});
+document.querySelectorAll('[data-k]').forEach(b => b.addEventListener('click', () => { send({ c: 'key', k: b.dataset.k }); if (navigator.vibrate) navigator.vibrate(12); }));
+$('#sendTxt').onclick = () => { const v = $('#txt').value.trim(); if (v) send({ c: 'text', v }).then(ok => ok && st('✅ Sent: ' + v)); };
+$('#txt').addEventListener('keydown', e => { if (e.key === 'Enter') $('#sendTxt').click(); });
+$('#sendSetup').onclick = async () => {
+  const cmd = { c: 'setup' };
+  if ($('#sv').value.trim() && $('#us').value.trim()) cmd.acc = { server: $('#sv').value.trim(), user: $('#us').value.trim(), pass: $('#pw').value };
+  const addons = $('#da').value.split(/\s+/).map(x => x.trim()).filter(Boolean);
+  if ($('#dk').value.trim() || addons.length) cmd.debrid = { service: $('#ds').value, key: $('#dk').value.trim(), addons };
+  if ($('#ma').value.trim()) cmd.sync = { url: $('#ma').value.trim(), code: $('#mc').value.trim() };
+  if (!cmd.acc && !cmd.debrid && !cmd.sync) return st('Fill in your provider login, debrid key or Mac address first', true);
+  if (await send(cmd)) { st('✅ Sent — check your TV'); $('#pw').value = ''; $('#dk').value = ''; $('#mc').value = ''; }
+};
+</script>
+</body>
+</html>

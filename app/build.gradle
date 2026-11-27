@@ -1,0 +1,56 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'org.xtreamplayer.app'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "org.xtreamplayer.app"
+        minSdk 24          // Android 7.0+
+        targetSdk 34
+        // Every GitHub build gets a higher number, so Android accepts it as an update
+        def run = (System.getenv("GITHUB_RUN_NUMBER") ?: "1").toInteger()
+        versionCode run
+        versionName "1." + run
+    }
+
+    // One permanent key (GitHub secrets PG_KEYSTORE_B64 + PG_KS_PASS) so every new APK installs over
+    // the last one. Without the secrets it falls back to the debug key, which changes on every build.
+    def ks = System.getenv("PG_KEYSTORE")
+    signingConfigs {
+        pangaze {
+            if (ks) {
+                storeFile file(ks)
+                storePassword System.getenv("PG_KS_PASS")
+                keyAlias "pangaze"
+                keyPassword System.getenv("PG_KS_PASS")
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig ks ? signingConfigs.pangaze : signingConfigs.debug
+        }
+    }
+
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    // Google's ExoPlayer (Media3): native playback for MKV, HEVC, HDR, Dolby / DTS
+    implementation 'androidx.media3:media3-exoplayer:1.4.1'
+    implementation 'androidx.media3:media3-exoplayer-hls:1.4.1'
+    implementation 'androidx.media3:media3-ui:1.4.1'
+}

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PanGaze — Help</title>
+<style>
+:root{--bg:#0e1116;--panel:#151a21;--panel2:#1c232c;--line:#28303b;--text:#e6edf3;--muted:#8b96a3;--accent:#3b82f6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+h1{font-size:30px;margin:0 0 4px}
+h2{font-size:22px;margin:40px 0 10px;padding-top:12px;border-top:1px solid var(--line)}
+h3{font-size:17px;margin:22px 0 6px}
+p,li{color:#d3dae2}
+.lead{color:var(--muted);margin:0 0 20px}
+a{color:#7fb0ff}
+code,kbd{background:var(--panel2);border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:.9em}
+kbd{font-family:inherit;font-weight:600}
+.toc{columns:2;gap:24px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 20px 16px 36px;margin:0}
+.toc li{margin:2px 0;break-inside:avoid}
+.tip{background:#13233d;border:1px solid #1e3a66;border-radius:10px;padding:10px 14px;margin:12px 0;color:#cfe0ff}
+.warn{background:#2c2410;border:1px solid #5b4a1c;border-radius:10px;padding:10px 14px;margin:12px 0;color:#fde68a}
+table{border-collapse:collapse;width:100%;margin:10px 0;font-size:15px}
+td,th{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--panel2)}
+@media (max-width:640px){.toc{columns:1}h1{font-size:26px}}
+@media print{body{background:#fff;color:#000}p,li{color:#222}.tip,.warn,.toc,th,code,kbd{background:#f3f4f6;color:#000;border-color:#ccc}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<h1>PanGaze — Help</h1>
+<p class="lead">Everything the player can do, and how to use it on a Mac, an Android phone and a Google TV.</p>
+
+<ol class="toc">
+  <li><a href="#start">Getting started</a></li>
+  <li><a href="#around">Finding your way around</a></li>
+  <li><a href="#live">Live TV and the Guide</a></li>
+  <li><a href="#catchup">Catch-up</a></li>
+  <li><a href="#films">Films and series</a></li>
+  <li><a href="#player">The player</a></li>
+  <li><a href="#keys">Remote control and keyboard</a></li>
+  <li><a href="#multi">Multi-view</a></li>
+  <li><a href="#rec">Recording</a></li>
+  <li><a href="#radio">Radio and podcasts</a></li>
+  <li><a href="#debrid">Debrid</a></li>
+  <li><a href="#media">My Media and downloads</a></li>
+  <li><a href="#search">Search and voice</a></li>
+  <li><a href="#profiles">Profiles, kids and parental lock</a></li>
+  <li><a href="#phone">Phone &amp; TV: remote, set-up, Play on TV, Cast</a></li>
+  <li><a href="#trakt">Trakt</a></li>
+  <li><a href="#sync">Sync and backups</a></li>
+  <li><a href="#backup">Backup provider</a></li>
+  <li><a href="#settings">Settings explained</a></li>
+  <li><a href="#trouble">Troubleshooting</a></li>
+  <li><a href="#privacy">Privacy and good to know</a></li>
+</ol>
+
+<section id="start">
+<h2>Getting started</h2>
+<h3>On a Mac</h3>
+<ol>
+  <li>Unzip <b>PanGaze.zip</b> and keep the folder somewhere permanent, such as Documents.</li>
+  <li>Double-click <b>Start PanGaze.command</b>. The first time, macOS may say it's from an unidentified developer: right-click the file, choose <b>Open</b>, then <b>Open</b> again.</li>
+  <li>The player opens in your web browser. Leave the small Terminal window open while you watch — it runs the helper that makes streams start quickly, records, and lets your phone and TV talk to the Mac.</li>
+</ol>
+<div class="tip"><b>No Terminal window:</b> double-click <b>Install PanGaze (background).command</b> once instead. PanGaze then runs quietly in the background and starts by itself whenever you log in, so you just open <b>localhost:8899</b> in your browser. It also puts a <b>PanGaze</b> app with its own icon in your Applications folder, which opens PanGaze in Firefox (or your default browser). Drag it onto the Dock to keep it there. After an update, run the installer again: it keeps your data. <b>Uninstall PanGaze (background).command</b> undoes it.</div>
+<div class="tip">Casting to a Chromecast, Google TV or Nvidia Shield works from any browser on the Mac, Firefox included, because the Mac does the casting.</div>
+<h3>On a Windows PC</h3>
+<ol>
+  <li>Install <b>Python 3</b> from <b>python.org/downloads</b>. On the first screen of the installer, tick <b>Add python.exe to PATH</b>.</li>
+  <li>Unzip <b>PanGaze.zip</b> somewhere permanent, such as Documents.</li>
+  <li>Double-click <b>Start PanGaze (Windows).bat</b>. If Windows says it protected your PC, click <b>More info</b> then <b>Run anyway</b>. If the firewall asks about Python, allow it on <b>Private networks</b> so your phone and TV can connect. Keep the PanGaze window open while you watch.</li>
+</ol>
+<div class="tip"><b>No black window:</b> double-click <b>Install PanGaze on Windows (background).bat</b> once instead. PanGaze then runs hidden, starts by itself when you sign in, and gets a <b>PanGaze</b> icon on your Desktop and in the Start menu. Run it again after an update; <b>Uninstall PanGaze on Windows.bat</b> removes it. For films with no sound, use Settings › <b>Sound fix</b> › <b>Download ffmpeg for me</b>.</div>
+<h3>On an Android phone or Google TV</h3>
+<ol>
+  <li>Get the APK (the app file) — for example from your GitHub repository's <b>Releases</b> page.</li>
+  <li>Open it on the phone, or on the TV with a file manager app. If Android asks, allow your browser or file manager to <b>install unknown apps</b>.</li>
+  <li>On Google TV the app appears in <b>Apps</b>. You can move it to your favourites row on the home screen.</li>
+</ol>
+<h3>Signing in</h3>
+<ul>
+  <li><b>Xtream login:</b> enter the server address, username and password your TV provider gave you. You can paste the whole link they sent; the player picks out the parts it needs.</li>
+  <li><b>M3U playlist:</b> if your provider gave you an M3U link instead, choose that option and paste it. An XMLTV link adds the TV guide.</li>
+  <li><b>On a TV:</b> press <b>📱 Set up with your phone</b>, scan the code with your phone's camera and type your login on the phone instead of with the remote.</li>
+</ul>
+</section>
+
+<section id="around">
+<h2>Finding your way around</h2>
+<p>The bar along the top has a tab for each part of the player:</p>
+<table>
+  <tr><th>Tab</th><th>What it's for</th></tr>
+  <tr><td>Home</td><td>Big tiles for each section, “Pick up where you left off”, your channels with what's on now, “On now for you”, Trakt “Up next”, trending films, radio favourites, reminders and recordings. Top right: the clock and the <b>VPN dot</b>, green <b>VPN ✓</b> when your connection goes through a VPN, red <b>VPN ✗</b> when it doesn't. In the Android app it checks the phone or TV itself; in a browser it checks the Mac or PC running PanGaze, since that's where streams come from. A VPN set up on your router can't be seen.</td></tr>
+  <tr><td>Live TV</td><td>Channels by category, with the player, now/next and the day's schedule.</td></tr>
+  <tr><td>Guide</td><td>A grid TV guide for every channel.</td></tr>
+  <tr><td>Movies / Series</td><td>Your provider's films and box sets.</td></tr>
+  <tr><td>Multi-view</td><td>Watch up to four channels at once.</td></tr>
+  <tr><td>Radio</td><td>Internet radio stations from around the world, and podcasts.</td></tr>
+  <tr><td>Debrid</td><td>A film and series hub (like Nuvio or Stremio) using addons and your debrid service.</td></tr>
+  <tr><td>My Media</td><td>Your own films and series from Plex, Jellyfin or folders on your Mac, plus downloads.</td></tr>
+  <tr><td>Recordings</td><td>Everything you've recorded or scheduled.</td></tr>
+</table>
+<p>On the right are the <b>search box</b> (and 🎤 voice search on Google TV), your <b>profile</b> circle, and <b>⚙︎ Settings</b>. Help is in Settings and on the Home screen.</p>
+</section>
+
+<section id="live">
+<h2>Live TV and the Guide</h2>
+<ul>
+  <li>Pick a <b>category</b> on the left, then a <b>channel</b>. It starts playing in the player, with what's on now and next underneath.</li>
+  <li>There are two kinds of favourite. <b>☆ next to a channel</b> adds it to <b>★ Favourite channels</b> (and to Home). <b>☆ next to a group</b> on the left (such as UK Kids) pins the whole group under <b>Favourite groups</b> at the top of the list. On a phone, use <b>☆ Favourite group</b> above the channel list; on a TV, press right on a group to reach its star. The ⋯ menu next to a channel can also favourite its group.</li>
+  <li><b>Back while watching:</b> each press steps out one level: full screen → the channel in its group → the first channel in the group → the group on the left → the top of the left list → Home. <b>Press Back twice quickly</b> to go straight Home and stop what's playing.</li>
+  <li><b>⋯</b> next to a channel lets you hide it, or put it in your own group. Settings → <b>📋 Channel lists</b> lets you reorder, hide and group channels and categories.</li>
+  <li>Type a <b>channel number</b> on the remote or keyboard to jump straight to it.</li>
+  <li>In the <b>Guide</b>, choose a programme to watch it (or watch it from the start, if it has catch-up), set a <b>🔔 reminder</b>, or record it.</li>
+  <li><b>Reminders:</b> a message pops up shortly before the programme starts, with a button to switch to it.</li>
+</ul>
+</section>
+
+<section id="catchup">
+<h2>Catch-up</h2>
+<p>Channels with catch-up show <b>⟲</b> and the number of days you can go back.</p>
+<ul>
+  <li>While watching, press <b>⟲ Catch-up</b> under the player (or <kbd>←</kbd> / the menu button on a TV remote) to open a list of programmes you missed. Choose one to play it.</li>
+  <li><b>⟲ Start over</b> plays the current programme from the beginning.</li>
+  <li>Past programmes in the Guide and schedule can be played from there too.</li>
+</ul>
+<div class="tip">If catch-up programmes start at the wrong time, change Settings → Catch-up → <b>Time zone</b> or <b>Time offset</b>. If they won't play at all, try the other <b>URL style</b>.</div>
+</section>
+
+<section id="films">
+<h2>Films and series</h2>
+<ul>
+  <li><b>Movies</b> and <b>Series</b> show your provider's catalogue by category. Choose a title to see the details, then play it.</li>
+  <li>The player remembers where you stopped. Unfinished titles appear in <b>Continue watching</b> on Home.</li>
+  <li>Near the end of an episode, <b>Next episode</b> appears with a countdown.</li>
+  <li><b>⏭ Skip intro:</b> while watching any episode, press <b>⏭ Set skip intro</b>. Play to where the intro starts and press “Starts now”, then to where it ends and press “Ends now”. From then on, every episode of that series shows a <b>Skip intro</b> button — or skips it automatically if you choose.</li>
+</ul>
+</section>
+
+<section id="player">
+<h2>The player</h2>
+<p>Buttons under the player (you only see the ones that apply to what you're watching):</p>
+<table>
+  <tr><th>Button</th><th>What it does</th></tr>
+  <tr><td>★ Favourite</td><td>Add or remove the channel from your favourites.</td></tr>
+  <tr><td>⟲ Catch-up / Start over</td><td>See <a href="#catchup">Catch-up</a>.</td></tr>
+  <tr><td>● Record</td><td>Record the current programme. See <a href="#rec">Recording</a>.</td></tr>
+  <tr><td>☰ Sources</td><td>(Debrid) Choose a different source for the same film or episode.</td></tr>
+  <tr><td>⏭ Set skip intro</td><td>(Episodes) Set or change the intro to skip for this series.</td></tr>
+  <tr><td>📺 Play on TV</td><td>Send what you're watching to your TV. See <a href="#phone">Phone &amp; TV</a>.</td></tr>
+  <tr><td>📡 Cast</td><td>Send it to a Chromecast, Google TV or Nvidia Shield. With live TV you can keep watching here too, still on one IPTV connection.</td></tr>
+  <tr><td>⬇ Download</td><td>Save a film or episode to watch offline (Android app), or download the file (browser).</td></tr>
+  <tr><td>🔊 Audio &amp; subs</td><td>Change the soundtrack language, turn subtitles on, or (Debrid) load more subtitles from your addons.</td></tr>
+  <tr><td>⏾ Sleep</td><td>Stop playback after 15 minutes to 2 hours.</td></tr>
+  <tr><td>ⓘ Stream info</td><td>Picture size, frame rate, speed and buffering — useful if something isn't playing smoothly.</td></tr>
+  <tr><td>⧉ Pop out</td><td>Picture-in-picture, so you can keep watching while you do something else.</td></tr>
+  <tr><td>▦ Multi-view</td><td>Add this channel to Multi-view.</td></tr>
+  <tr><td>⤢ Theatre</td><td>Fill the window with the video.</td></tr>
+  <tr><td>Copy URL / IINA / VLC / Other player</td><td>Open the stream in another app — handy for unusual formats.</td></tr>
+</table>
+<p>If you leave the player while something is playing, it keeps going in a <b>mini player</b> in the corner.</p>
+<h3>The app player (Android and Google TV)</h3>
+<p>In the Android app, films, series, Debrid, recordings and My Media play in Google's own video player (ExoPlayer). It plays MKV files, 4K, HDR and Dolby Vision, and sends Dolby and DTS surround sound to your TV or soundbar. Use the remote's arrows to see the controls, including a ⚙ menu for soundtrack and subtitles. <kbd>←</kbd>/<kbd>→</kbd> jump back 10 seconds or forward 30.</p>
+<p>Settings → <b>Video player</b> lets you use it for live TV as well, or go back to the web player.</p>
+</section>
+
+<section id="keys">
+<h2>Remote control and keyboard</h2>
+<h3>Google TV remote</h3>
+<table>
+  <tr><th>Button</th><th>In menus</th><th>While watching</th></tr>
+  <tr><td>Arrows</td><td>Move around</td><td>▲▼ change channel · ◀ catch-up (live) or back 10 s · ▶ forward 30 s</td></tr>
+  <tr><td>OK</td><td>Choose</td><td>Show info · pause/play (films)</td></tr>
+  <tr><td>Back</td><td>Go back (on Live TV: one level at a time, ending on Home)</td><td>Leave full screen, back to the channel in its group</td></tr>
+  <tr><td>Mouse scroll wheel</td><td colspan="2">Over any player (TV, films, multi-view, the radio bar), or anywhere in full screen: volume from 0% to 120%. Above 100% the bar turns amber. The level is remembered. Lists still scroll as normal.</td></tr>
+  <tr><td>Back twice quickly</td><td colspan="2">Straight to Home, and stop what's playing</td></tr>
+  <tr><td>Channel ▲▼</td><td colspan="2">Next / previous channel</td></tr>
+  <tr><td>Play/pause</td><td colspan="2">Pause or play</td></tr>
+  <tr><td>Number keys</td><td colspan="2">Go to a channel by its number</td></tr>
+</table>
+<h3>Keyboard (Mac)</h3>
+<table>
+  <tr><th>Key</th><th>What it does</th></tr>
+  <tr><td><kbd>Space</kbd></td><td>Pause / play</td></tr>
+  <tr><td><kbd>↑</kbd> <kbd>↓</kbd></td><td>Previous / next channel (Live TV)</td></tr>
+  <tr><td><kbd>F</kbd></td><td>Full screen</td></tr>
+  <tr><td><kbd>M</kbd></td><td>Mute</td></tr>
+  <tr><td><kbd>I</kbd></td><td>Stream info</td></tr>
+  <tr><td><kbd>0</kbd>–<kbd>9</kbd></td><td>Go to a channel by number</td></tr>
+  <tr><td><kbd>Esc</kbd></td><td>Close a window or leave theatre mode</td></tr>
+</table>
+<h3>Typing with the remote</h3>
+<ul><li>On a TV, moving onto a text box (search, logins, addresses) just highlights it. Press <b>OK</b> to open the on-screen keyboard. Tapping or clicking a box, a real keyboard and the phone remote's <b>Type</b> tab all work straight away.</li></ul>
+</section>
+
+<section id="multi">
+<h2>Multi-view</h2>
+<p>Open the <b>Multi-view</b> tab, choose 2 or 4 tiles, and press <b>＋ Add a channel</b> on each. Choose a tile to hear its sound; the others stay muted. Double-click a tile (or use the full-screen button above the tiles) to watch that channel on its own. ✕ removes a channel.</p>
+<div class="tip">Each tile uses one of your provider's connections. If your subscription allows only one or two at a time, some tiles won't play.</div>
+</section>
+
+<section id="rec">
+<h2>Recording</h2>
+<ul>
+  <li><b>● Record</b> under the player records the programme that's on. In the Guide or a channel's schedule you can record a future programme, or press <b>⟳ Record every episode</b> so each new episode of that series is recorded.</li>
+  <li>Recordings start a minute early and run a few minutes over, in case the programme moves (change this in Settings → Recording).</li>
+  <li><b>Where they go:</b> on a Mac, <b>Movies/Xtream Recordings</b> — or your <b>Google Drive</b> (folder “Xtream Recordings”) if Google Drive for desktop is installed and you choose it. On Android they're kept in the app; use <b>⬆ Save to Google Drive</b> in Recordings to copy one to your Drive.</li>
+  <li><b>Making them smaller:</b> in the Recordings tab, press <b>🗜 Make smaller</b> on a recording, or choose a level for all new recordings: <b>Balanced</b> (about half the size), <b>Small</b> (about a third) or <b>Smallest</b> (720p, about a quarter). Smaller takes longer to process.</li>
+  <li>The Mac must be switched on and the player's Terminal window open for recordings to happen there. On Android, recordings carry on in the background.</li>
+</ul>
+</section>
+
+<section id="radio">
+<h2>Radio and podcasts</h2>
+<ul>
+  <li>The <b>Radio</b> tab lists stations from around the world: popular in the UK, top worldwide, by genre (news, pop, rock, dance, jazz, classical and more), or search by name.</li>
+  <li><b>☆</b> stars a favourite station; favourites appear first and on Home.</li>
+  <li>The radio keeps playing at the bottom of the screen while you browse. Starting a video stops it.</li>
+  <li><b>🎙 Podcasts:</b> shows the top UK podcasts. Search for any podcast, open it to see the episodes, and press <b>＋ Subscribe</b> to keep it at the top. Episodes remember where you stopped; use ↺15 and 30↻ to skip back and forward.</li>
+</ul>
+</section>
+
+<section id="debrid">
+<h2>Debrid</h2>
+<p>A film and series hub that works like Nuvio and Stremio. <b>Addons</b> supply the catalogues and the sources, and your <b>debrid service</b> turns sources into fast streams.</p>
+<h3>Setting it up</h3>
+<ol>
+  <li>Open <b>Debrid → ⚙︎ Addons &amp; debrid</b>.</li>
+  <li>Choose your service (<b>Real-Debrid</b>, <b>TorBox</b> or <b>Premiumize</b>), paste your <b>API key</b> (the “get yours ↗” link shows where to find it), and press <b>Test connection</b>.</li>
+  <li>Cinemeta (catalogues and details) and OpenSubtitles are added for you. Add the addon that provides your <b>sources</b> by pasting its link (ending in <code>manifest.json</code>; <code>stremio://</code> links work too).</li>
+  <li>Press <b>Save</b>.</li>
+</ol>
+<div class="tip">On a TV, set this up from your phone instead (see <a href="#phone">Phone &amp; TV</a>), or on your Mac with Sync turned on.</div>
+<h3>Watching</h3>
+<ul>
+  <li>Browse Home, Movies (with genres) or Series, or search. Choose a title for details, cast, the trailer and episodes.</li>
+  <li><b>▶ Play</b> starts the best instant source automatically (you can turn this off). <b>☰ Sources</b> lists them all, with quality, HDR, size and sound format.</li>
+  <li><b>🔊 Plays in Firefox</b> (Mac and PC only) lists just the sources that will play <b>with sound</b> in Firefox: AAC, Opus, Vorbis, FLAC or MP3 sound, in MP4 or MKV, without HDR or Dolby Vision. Sources with Dolby (DD, DD+, Atmos) or DTS sound play silently in Firefox unless the Sound fix is on, so they're left out, and so are ones that don't say what sound they use. PanGaze remembers this tab for next time.</li>
+  <li><b>⚡ Instant</b> means it's ready to stream now. <b>⏳ Not cached</b> means your service needs to download it first; it's added to your downloads there, so you can try again later.</li>
+  <li><b>↗</b> opens a source in VLC or another player.</li>
+  <li><b>＋ Library</b> saves a title. Your <b>Trakt watchlist</b> and <b>Up next</b> appear here when Trakt is connected.</li>
+</ul>
+<div class="warn">Only add addons you trust, and only stream content you have the rights to watch.</div>
+<h3>Latest horror films</h3>
+<ul><li>The Debrid home screen shows the 30 newest horror films that are already out, newest first. The list refreshes itself every few hours from Cinemeta. Hide it in ⚙︎ Addons &amp; debrid → “Latest horror films” row. It isn't shown on kids' profiles.</li></ul>
+</section>
+
+<section id="media">
+<h2>My Media and downloads</h2>
+<ul>
+  <li><b>Plex:</b> My Media → ⚙︎ Sources → <b>Sign in with Plex</b>. Approve the code on your phone; your server is found automatically.</li>
+  <li><b>Jellyfin:</b> enter your server's address (for example <code>http://192.168.1.10:8096</code>), username and password.</li>
+  <li><b>Folders on your Mac:</b> on the Mac, open My Media → ⚙︎ Sources and add a folder, such as <code>/Users/you/Movies</code>, or a network drive under <code>/Volumes</code>. Your phone and TV can then watch those files over Wi-Fi when Sync is set to your Mac's address.</li>
+  <li><b>Downloads (Android app):</b> press <b>⬇ Download</b> under the player to save a film or episode. Find it in My Media → <b>Downloads</b> and watch it without internet.</li>
+</ul>
+</section>
+
+<section id="search">
+<h2>Search and voice</h2>
+<ul>
+  <li>Type in the <b>search box</b> and press Enter. One search covers channels, programmes in the guide, films, series, Debrid, My Media and podcasts.</li>
+  <li>In the Debrid, My Media and Radio tabs the box searches just that tab.</li>
+  <li><b>Voice (Google TV):</b> press 🎤 next to the search box, or the search button on your remote, and say what you're looking for.</li>
+</ul>
+</section>
+
+<section id="profiles">
+<h2>Profiles, kids and parental lock</h2>
+<ul>
+  <li><b>Profiles:</b> choose the circle at the top right. Each person gets their own favourites, Continue watching, history and library.</li>
+  <li><b>Kids profile:</b> choose <b>Kids profile</b> when creating a profile. It shows big, simple screens with only children's channels and films (when your provider labels them as Kids or Family), and hides the Guide, Multi-view, Debrid and Recordings. Settings are locked.</li>
+  <li><b>🔒 Parental lock</b> (Settings): set a 4-digit PIN and choose categories to lock. They need the PIN to open, and are hidden from kids profiles.</li>
+</ul>
+</section>
+
+<section id="phone">
+<h2>Phone &amp; TV: remote, set-up, Play on TV, Cast</h2>
+<h3>Use your phone as a remote</h3>
+<ol>
+  <li>On the TV (or Mac), open Settings → <b>📱 Phone &amp; TV</b>.</li>
+  <li>Scan the QR code with your phone's camera. A remote opens in the phone's browser.</li>
+  <li><b>Remote</b> has arrows, OK, Back, Home and play controls. <b>Type</b> sends text to the TV's search. <b>Set up TV</b> sends your provider login, debrid key and addons.</li>
+</ol>
+<p>The phone must be on the same Wi-Fi. On a Mac, start the player with the Start file so phones can reach it.</p>
+<h3 id="code">The PanGaze code (connecting a new device to your Mac)</h3>
+<p>So that nobody else on your Wi-Fi (and no website you visit) can use PanGaze on your Mac, each new phone, tablet, TV or browser needs your Mac's <b>PanGaze code</b> once. It looks like <code>ABCD-EFGH</code>.</p>
+<ul>
+  <li><b>Where to find it:</b> on the Mac, Settings → <b>📱 Phone &amp; TV</b>. It's also shown in the Terminal window if you use the Start file.</li>
+  <li><b>Phone or tablet browser:</b> type it when asked, or scan the second QR code on the Mac's Phone &amp; TV screen, which connects the phone straight away.</li>
+  <li><b>Android app / Google TV:</b> Settings → Sync between devices: enter the Mac's address and the code. On a TV you can send both from your phone instead: <b>Set up TV</b> → “Your Mac or PC”.</li>
+  <li>Signing in with your <b>PanGaze account</b> also connects the device, with no code to type.</li>
+  <li><b>New code</b> on the Mac's Phone &amp; TV screen disconnects every other device until it gets the new code.</li>
+</ul>
+<h3>Play on TV</h3>
+<p>On your phone (or Mac), open Settings → 📱 Phone &amp; TV and enter the <b>TV address and code</b> shown on the TV's Phone &amp; TV screen. A <b>📺 Play on TV</b> button then appears under the player: it sends what you're watching to the TV, carrying on from the same point.</p>
+<h3 id="cast">Cast to a Chromecast, Google TV or Nvidia Shield</h3>
+<p>Press <b>📡 Cast</b> under the player and pick the TV. The Mac does the casting, so it works in Firefox, and from a phone's browser connected to the Mac. Nothing needs installing on the TV.</p>
+<ul>
+  <li><b>Keep playing here too</b> (live TV): the Mac fetches each piece of the channel from your provider once and gives it to both screens, so a <b>one-connection line</b> is enough. The TV runs a few seconds behind (up to about 30), so it's ideal for walking between rooms.</li>
+  <li><b>Change channel</b> on the Mac and the TV follows. Without “Keep playing here too”, the Mac becomes a remote: picking a channel plays it on the TV only.</li>
+  <li>The <b>📡 bar</b> at the bottom left pauses or stops the TV. Stopping on the Mac doesn't stop the TV.</li>
+  <li>Live channels are sent in HLS (.m3u8) format, which Chromecasts need; most providers support it. Films and catch-up cast too, but they use your line on their own.</li>
+  <li>PanGaze must have been started with the Start file or the background installer (phone &amp; TV access). If no TV is found, check it's on and on the same Wi-Fi.</li>
+</ul>
+<p>In the Android app, 📡 Cast still uses Android's own casting.</p>
+</section>
+
+<section id="trakt">
+<h2>Trakt</h2>
+<p>Trakt keeps a record of what you've watched across all your apps and devices.</p>
+<ol>
+  <li>On your phone or computer, sign in at <b>trakt.tv</b> and open <b>trakt.tv/oauth/applications/new</b>.</li>
+  <li>Name it <b>PanGaze</b>, set Redirect URI to <code>urn:ietf:wg:oauth:2.0:oob</code>, and save.</li>
+  <li>In the player: Settings → <b>✓ Trakt</b>. Paste the <b>Client ID</b> and <b>Client Secret</b>, press <b>Connect</b>, and enter the code it shows at <b>trakt.tv/activate</b>.</li>
+</ol>
+<p>After that, films and episodes you watch are marked as watched on Trakt, and your watchlist and “Up next” appear on Home and Debrid.</p>
+<h3>Your Trakt lists</h3>
+<p>Every list you've made on Trakt, and every list you've <b>liked</b> on Trakt, gets its own row on the <b>Debrid</b> home page, under your watchlist, in the list's own order (up to 30 titles each). To choose which lists show, open Settings › <b>Trakt</b> and tick or untick them. New lists appear within half an hour, or straight away when you open the Trakt settings. Lists are hidden on kids profiles.</p>
+</section>
+
+<section id="sync">
+<h2>Your PanGaze account, sync and backups</h2>
+<h3>PanGaze account</h3>
+<ul>
+  <li>One account for all your devices. It's kept on your Mac, so nothing goes to an outside company.</li>
+  <li><b>Create it</b> on the Mac: Settings → <b>PanGaze account</b> → <b>Create an account</b>. Choose a name and password. Everything on the Mac is saved to it straight away.</li>
+  <li><b>On a new device</b>, choose <b>👤 Sign in with your PanGaze account</b> on the welcome screen (or in Settings). On the phone or TV app, also enter your Mac's address, shown on the Mac under Settings → PanGaze account.</li>
+  <li>You then choose what to copy: <b>TV provider logins</b>, <b>settings &amp; look</b>, <b>profiles, favourites &amp; history</b>, <b>Debrid &amp; Trakt</b> and <b>My Media</b>. Choose <b>Not now</b> to copy nothing.</li>
+  <li>While signed in, changes you make on each device are saved to the account automatically (you can turn this off). To bring a device up to date later, use <b>Copy from my account…</b> in Settings.</li>
+  <li>Each device keeps its own TV mode and connection settings. Devices need to be on the same Wi-Fi as the Mac to sign in or copy.</li>
+</ul>
+<h3>Everyday sync</h3>
+<ul>
+  <li><b>Sync</b> keeps favourites, Continue watching, reminders, profiles, debrid settings and more the same on all your devices. Turn it on in Settings → Sync. On your phone and TV, enter your <b>Mac's address</b> (shown as “On your Wi-Fi” in the Mac's Terminal window, such as <code>192.168.1.20:8899</code>) and its <a href="#code">PanGaze code</a>. The Mac must be on with the player running.</li>
+  <li><b>⬇ Export backup</b> saves your settings, favourites and lists to a file; <b>⬆ Restore backup</b> brings them back, on any device.</li>
+</ul>
+<div class="tip"><b>TV or phone can't find your account?</b> On the TV, press <b>🔎 Find it</b> next to the address and PanGaze looks for your computer on the Wi-Fi by itself (it also does this when the saved address stops working). Still nothing? On the Mac, open Settings › <b>PanGaze account</b>: it warns you if the Mac's firewall is keeping other devices out, and tells you how to let PanGaze in.</div>
+<h3 id="vpnsync">Sync with NordVPN switched on</h3>
+<p>A VPN can hide your home network, so your phone and TV can't reach the Mac. Sync and casting to the Shield both stop. You can keep NordVPN on everywhere if you change one setting on each device:</p>
+<ul>
+  <li><b>Mac:</b> NordVPN → profile icon (top right) → Settings → General → turn <b>off</b> “Stay invisible on a local network”.</li>
+  <li><b>Android phone and Google TV / Shield:</b> NordVPN → Settings → <b>Local network discovery</b> → turn it <b>on</b>. Or add PanGaze to <b>Split tunneling</b> so it skips the VPN.</li>
+</ul>
+<div class="tip">If PanGaze can't reach your Mac, it shows these steps for you and also lists them under Settings → Sync between devices. Your internet traffic, including IPTV, still goes through the VPN.</div>
+</section>
+
+<section id="backup">
+<h2>Backup provider</h2>
+<p>If you have a second Xtream subscription, add it in Settings → <b>🔁 Backup provider</b>. When a channel won't play on your main provider, the player finds the same channel on the backup and switches to it automatically. If a film won't play, <b>⚡ Find on Debrid</b> looks for it there.</p>
+</section>
+
+<section id="settings">
+<h2>Settings explained</h2>
+<table>
+  <tr><th>Setting</th><th>What it does</th></tr>
+  <tr><td>Live stream format</td><td><b>Automatic</b> picks the fastest-starting format. Try “Always HLS” or “Always MPEG-TS” if channels won't play.</td></tr>
+  <tr><td>Buffer</td><td><b>Normal</b> starts quickly. <b>Large</b> is smoother on slow or busy Wi-Fi, but takes a moment longer to start.</td></tr>
+  <tr><td>Match TV refresh rate</td><td>On Google TV, switches the TV to the video's frame rate, so UK 50 Hz channels and 24p films play without judder.</td></tr>
+  <tr><td>Video player</td><td>(Android) Which player to use: the app player for films and series, for everything, or the web player.</td></tr>
+  <tr><td>Use local proxy</td><td>Routes streams through the Mac's helper (or the app). Leave on Automatic.</td></tr>
+  <tr><td>TV mode</td><td>Remote-control navigation, with the same look as on the Mac. Automatic turns it on for TVs and TV boxes.</td></tr>
+  <tr><td>TV screen size</td><td><b>Like the Mac</b> shows the same layout as a Mac browser, scaled to fill the TV. <b>Large</b> makes everything bigger if it's hard to read from the sofa.</td></tr>
+  <tr><td>Colour / Background</td><td>The accent colour, and dark grey or pure black (best on OLED screens).</td></tr>
+  <tr><td>Catch-up</td><td>URL style, time zone and offset, and how much extra to play before and after a programme. Only change these if catch-up is wrong.</td></tr>
+  <tr><td>Recording</td><td>How early to start and how long to keep recording after the end.</td></tr>
+  <tr><td>Sync</td><td>See <a href="#sync">Sync and backups</a>.</td></tr>
+  <tr><td>More</td><td>Phone &amp; TV, Trakt, My Media sources, Backup provider, Channel lists, Parental lock, Profiles, backups, Help.</td></tr>
+  <tr><td>Reload channel lists</td><td>Fetch the latest channels and films from your provider.</td></tr>
+  <tr><td>Sign out</td><td>Sign out of this provider on this device.</td></tr>
+</table>
+<h3>Themes</h3>
+<ul>
+  <li>Settings → <b>Theme</b> changes the whole colour scheme without changing the layout: <b>PanGaze (original)</b>, <b>Cinema</b> (warm black &amp; gold), <b>Ocean</b> (deep navy &amp; aqua), <b>Forest</b> (dark green &amp; emerald) or <b>Velvet</b> (plum &amp; rose).</li>
+  <li>You see each one straight away as you pick it; it's only kept when you press <b>Save</b>. <b>Accent colour</b> lets you swap just the highlight colour, and <b>Background → Black</b> works with every theme.</li>
+</ul>
+<h3>Full screen</h3>
+<ul><li>In Firefox, PanGaze switches to full screen the moment you first click or press a key (browsers don't allow it before that). The small round button in the bottom-right corner leaves full screen, and brings it back. Change this in Settings → <b>Full screen when PanGaze opens</b>: In Firefox, In every browser, or Never. <b>F</b> still makes the video fill the screen.</li></ul>
+</section>
+
+<section id="trouble">
+<h2>Troubleshooting</h2>
+<h3>A film plays but has no sound (on a Mac)</h3>
+<ul>
+  <li>Many films, especially from Debrid, use cinema sound (Dolby Digital, DTS, TrueHD) that web browsers can't play.</li>
+  <li>PanGaze notices the silence after a couple of seconds and converts the sound on your Mac as you watch. The picture pauses for a moment while it starts. Seeking, pausing and the volume all keep working.</li>
+  <li>This needs the free tool <b>ffmpeg</b>. Set it up once on the Mac in <b>Settings → 🔊 Sound fix → Download ffmpeg for me</b> (no Terminal needed), or PanGaze offers it the first time a film is silent. If the download is blocked, you can download ffmpeg.zip in your browser and choose the file there instead. Until then, ↗ opens the film in VLC.</li>
+  <li>The Android app plays these films itself and doesn't need this.</li>
+</ul>
+<h3>The mouse pointer disappears or feels jumpy on a computer</h3>
+<ul>
+  <li>TV mode is probably on. It's made for TV remotes, so it hides the pointer and enlarges whatever is selected.</li>
+  <li>Move the mouse and choose <b>Turn off TV mode</b> in the box that appears, or go to Settings → <b>TV mode</b> → <b>Off</b>.</li>
+  <li>While a video is playing, the pointer hides after 3 seconds of stillness over the picture. Move the mouse to bring it back.</li>
+</ul>
+<h3>A channel won't play, or keeps stopping</h3>
+<ul>
+  <li>Press <b>Retry</b>. The player already tries a second format and reconnects on its own.</li>
+  <li>Change Settings → <b>Live stream format</b>, or set <b>Buffer</b> to Large.</li>
+  <li>Check your subscription isn't already in use on another device (Settings shows how many connections are in use).</li>
+  <li>Add a <a href="#backup">backup provider</a> so channels switch over automatically.</li>
+</ul>
+<h3>Slow to start or jerky</h3>
+<ul>
+  <li>On a Mac, open the player with the Start file (not by double-clicking the HTML file), so the fast helper is used.</li>
+  <li>Use a wired connection or 5 GHz Wi-Fi for the TV if you can. ⓘ Stream info shows the speed.</li>
+  <li>Turn on <b>Match TV refresh rate</b> on Google TV.</li>
+</ul>
+<h3>No sound (films or Debrid)</h3>
+<p>Browsers can't play DTS or TrueHD sound, and Mac browsers can't play Dolby Digital. In the Android app the app player plays them all. On a Mac, choose a source without ⚠️, or use <b>VLC / Other player</b>.</p>
+<h3>Catch-up plays the wrong programme</h3>
+<p>Change Settings → Catch-up → <b>Time zone</b> or <b>Time offset</b>, or add a minute or two to <b>Start early</b>.</p>
+<h3>The guide is empty</h3>
+<p>Some providers only send the guide for some channels. Press <b>Reload channel lists</b> in Settings. For M3U playlists, add your provider's XMLTV link.</p>
+<h3>Debrid says “Not cached”</h3>
+<p>Your service hasn't got that copy yet. Pick a <b>⚡ Instant</b> source, or try again later — it's been added to your downloads there.</p>
+<h3>My phone can't reach the TV or Mac</h3>
+<ul>
+  <li>Make sure both are on the same Wi-Fi (not a guest network) and the app is open on the TV.</li>
+  <li>On a Mac, start the player with the Start file, and allow incoming connections if macOS asks.</li>
+  <li>If the code has changed, scan the QR code again.</li>
+</ul>
+<h3>Gmail says the APK contains a virus</h3>
+<p>Gmail blocks all app files sent by email. Use Google Drive, a USB stick, or the download link from GitHub instead.</p>
+<h3>Android won't install the APK</h3>
+<p>Allow the app you're opening it with (Chrome, Files or a file manager) to <b>install unknown apps</b> when Android asks. If an older version is installed, it updates in place.</p>
+</section>
+
+<section id="privacy">
+<h2>Privacy and good to know</h2>
+<ul>
+  <li>Your logins, keys and history stay on your devices. With Sync on, they're copied only to your own Mac.</li>
+  <li>Your debrid key is only sent to your debrid service, and your Trakt key only to Trakt.</li>
+  <li>The player doesn't come with any channels or content: it plays what your provider, addons and your own servers supply.</li>
+</ul>
+</section>
+</main>
+</body>
+</html>

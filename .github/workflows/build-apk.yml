@@ -1,0 +1,54 @@
+name: Build APK
+
+on:
+  push:
+    paths-ignore:
+      - 'desktop/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Unpack the signing key
+        env:
+          KS: ${{ secrets.PG_KEYSTORE_B64 }}
+        run: |
+          if [ -n "$KS" ]; then
+            echo "$KS" | base64 -d > "$RUNNER_TEMP/pangaze.jks"
+            echo "PG_KEYSTORE=$RUNNER_TEMP/pangaze.jks" >> "$GITHUB_ENV"
+          else
+            echo "::warning::No PG_KEYSTORE_B64 secret: this APK won't install over the previous one"
+          fi
+
+      - name: Build
+        env:
+          PG_KS_PASS: ${{ secrets.PG_KS_PASS }}
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleRelease --no-daemon
+          cp app/build/outputs/apk/release/app-release.apk PanGaze.apk
+
+      - name: Keep build as a download (Actions tab)
+        uses: actions/upload-artifact@v4
+        with:
+          name: PanGaze-apk
+          path: PanGaze.apk
+
+      - name: Publish to the "latest" release (easy phone download)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: PanGaze (latest build)
+          files: PanGaze.apk
+          make_latest: true

@@ -1,0 +1,30 @@
+#!/bin/bash
+# PanGaze launcher: makes sure PanGaze is running, then opens it in Firefox
+# (or your default browser if Firefox isn't installed).
+URL="http://localhost:8899"
+LABEL="org.pangaze.server"
+PLIST="$HOME/Library/LaunchAgents/$LABEL.plist"
+up() { /usr/bin/curl -s -m 2 "$URL/__xp_ping" 2>/dev/null | grep -q xp-proxy; }
+wait_up() { for i in $(seq 1 24); do up && return 0; sleep 0.5; done; return 1; }
+
+if ! up; then
+  if [ -f "$PLIST" ]; then
+    # installed to run in the background, but stopped: start it again
+    launchctl kickstart -k "gui/$(id -u)/$LABEL" >/dev/null 2>&1 || launchctl bootstrap "gui/$(id -u)" "$PLIST" >/dev/null 2>&1
+    wait_up
+  else
+    # not installed yet: if this app is still inside the PanGaze folder, start PanGaze from there
+    DIR="$(cd "$(dirname "$0")/../../.." && pwd)"
+    if [ -f "$DIR/server.py" ] && command -v python3 >/dev/null 2>&1; then
+      (cd "$DIR" && nohup python3 server.py --lan --no-open >/dev/null 2>&1 &)
+      wait_up
+    fi
+  fi
+fi
+
+if ! up; then
+  /usr/bin/osascript -e 'display dialog "PanGaze isn'"'"'t running yet.\n\nOpen the PanGaze folder and double-click “Install PanGaze (background).command” once. After that, this icon opens PanGaze any time." with title "PanGaze" buttons {"OK"} default button "OK" with icon caution' >/dev/null 2>&1
+  exit 0
+fi
+
+if open -Ra Firefox >/dev/null 2>&1; then open -a Firefox "$URL"; else open "$URL"; fi
